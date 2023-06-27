@@ -1,0 +1,6 @@
+*.nii
+*.csv
+test_T2/
+weight_/
+.DS_Store
+.python-version
