@@ -51,7 +51,7 @@ if __name__ == '__main__':
         new_mask_filepath = os.path.join(args.new_mask_dir, os.path.splitext(raw_file)[0] + '_mask.nii')
         update_header_and_save(raw_filepath, mask_filepath, new_mask_filepath)
 
-    print('\n**********\t', f'Completed. New masks generated & saved in {args.new_mask_dir}', '\t**********\n')
+    print('\n**********\t', f'Completed!!!!! New masks generated & saved in {args.new_mask_dir}', '\t**********\n')
 
 
 """ Comman do run the script is: python BEN_infer_new.py -i (your input folder for raw images) -o (your output folder for generated masks) -new_mask_dir (your new folder of transformed maks) -weight weight/exvivo_scan_06251403/.hdf5 -check RIA"""
