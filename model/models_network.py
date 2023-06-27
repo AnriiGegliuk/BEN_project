@@ -2,7 +2,7 @@
 from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Input, Add, BatchNormalization
 from tensorflow.keras.layers import Dropout
-
+import tensorflow as tf
 from tensorflow.keras.layers import Conv2D, Conv2DTranspose
 from tensorflow.keras.layers import MaxPooling2D
 from tensorflow.keras.layers import concatenate
@@ -132,7 +132,7 @@ def backbone_network(IMG_WIDTH=256, IMG_HEIGHT=256, IMG_CHANNELS=1, pretrained_w
     model = Model(inputs=[inputs], outputs=[outputs])
 
     if need_complie:
-        model.compile(optimizer='adam', loss=[weighted_dice_with_CE], metrics=[dice_coef])
+        model.compile(optimizer=tf.keras.optimizers.legacy.Adam(), loss=[weighted_dice_with_CE], metrics=[dice_coef])
 
     if (pretrained_weights):
         model.load_weights(pretrained_weights)

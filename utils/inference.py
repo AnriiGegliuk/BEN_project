@@ -13,9 +13,15 @@ from utils.load_data import read_from_nii, save_pred_to_nii
 import os
 
 # os.environ['CUDA_VISIBLE_DEVICES'] = '1'
-config = tf.ConfigProto()
-config.gpu_options.allow_growth = True
-tf.Session(config=config)
+
+# config = tf.ConfigProto()
+# config.gpu_options.allow_growth = True
+# tf.Session(config=config)
+
+# config = tf.compat.v1.ConfigProto() 
+# config.gpu_options.allow_growth = True
+# tf.compat.v1.Session (config=config)
+
 
 
 def inference_pipeline(nii_filename='',

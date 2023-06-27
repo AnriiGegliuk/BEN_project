@@ -89,7 +89,11 @@ def write_itk_imageArray(imageArray, filename, src_nii=None, orientation=None):
     write_itk_image(img, filename)
 
 
-def read_from_nii(nii_path=r'E:\data\src/*', need_rotate=True,
+# # E:\data\src/*
+
+
+
+def read_from_nii(nii_path=r'/home/sharapova/data/raw-data/*', need_rotate=True,
                   need_resize=256, Hu_window=(-1000, 512), modality=None, max_num=-1, keyword=None,
                   check_orientation=None):
     '''

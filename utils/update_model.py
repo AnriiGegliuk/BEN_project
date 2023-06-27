@@ -1,5 +1,6 @@
 import os
 import numpy as np
+import tensorflow as tf
 # from utils.load_data import read_from_nii, read_from_nii_label
 from model.models_network import backbone_network
 import time
@@ -80,12 +81,22 @@ def update_weight(train_data='', label_data='', target_data='',
                 else:
                     print('Trainable lay: ', layer.name)
 
-            models.compile(optimizer='adam', loss=[weighted_dice_with_CE], metrics=[dice_coef])
+
+            # models.compile(optimizer='adam', loss=[weighted_dice_with_CE], metrics=[dice_coef])
+
+            # models.compile(optimizer='adam', loss=[weighted_dice_with_CE], metrics=[dice_coef])
+            models.compile(optimizer=tf.keras.optimizers.legacy.Adam(), loss=[weighted_dice_with_CE], metrics=[dice_coef])
+
             print('Only finetune BN on target domain!')
         else:
             models = backbone_network(256, 256, pretrained_weights=weight, need_complie=False, BN_list=BN_list,
                                       droprate=droprate, momentum=momentum)
-            models.compile(optimizer='adam', loss=[weighted_dice_with_CE], metrics=[dice_coef])
+
+            # models.compile(optimizer='adam', loss=[weighted_dice_with_CE], metrics=[dice_coef])
+
+            # models.compile(optimizer='adam', loss=[weighted_dice_with_CE], metrics=[dice_coef])
+            models.compile(optimizer=tf.keras.optimizers.legacy.Adam(), loss=[weighted_dice_with_CE], metrics=[dice_coef])
+
             print('finetune all layers on target domain!')
     else:
         # input('please check input.')
@@ -98,7 +109,7 @@ def update_weight(train_data='', label_data='', target_data='',
                     layer.trainable = False
                 else:
                     print('Trainable lay: ', layer.name)
-        models.compile(optimizer='adam', loss=[weighted_dice_with_CE], metrics=[dice_coef])
+        models.compile(optimizer=tf.keras.optimizers.legacy.Adam(), loss=[weighted_dice_with_CE], metrics=[dice_coef])
 
     '''
     setting
@@ -144,7 +155,7 @@ def update_weight(train_data='', label_data='', target_data='',
     if len(label_path) > 2:  # if label path is not empty. len('' + '/*') == 2
         for layer in models.layers:
             layer.trainable = True
-        models.compile(optimizer='adam', loss=[weighted_dice_with_CE], metrics=[dice_coef])
+        models.compile(optimizer=tf.keras.optimizers.legacy.Adam(), loss=[weighted_dice_with_CE], metrics=[dice_coef])
         models.fit(all_src_data, all_label_data, batch_size=batch_size, epochs=epochs, validation_split=0,  # or 0.1
                    callbacks=callbacks_list)
 
@@ -174,7 +185,7 @@ def update_weight(train_data='', label_data='', target_data='',
                 layer.trainable = False
             else:
                 print('Trainable lay: ', layer.name)
-        models.compile(optimizer='adam', loss=[weighted_dice_with_CE], metrics=[dice_coef])
+        models.compile(optimizer=tf.keras.optimizers.legacy.Adam(), loss=[weighted_dice_with_CE], metrics=[dice_coef])
         print('Only finetune BN on target domain!')
         # load target raw MR scans
         all_src_data = read_from_nii(nii_path=target_path, need_resize=256, Hu_window='auto',
