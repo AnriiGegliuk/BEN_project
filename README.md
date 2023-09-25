@@ -15,7 +15,7 @@
 
 ![](fig/BEN-workflow.png)
 
-See also:
+See also :
 <img src="https://github.com/yu02019/MouseGAN-pp/blob/main/fig/logo.png" width = "293" height = "100" alt="MouseGAN++ logo" align=center /> | [Github project link](https://github.com/yu02019/MouseGAN-pp)
 
 ```
